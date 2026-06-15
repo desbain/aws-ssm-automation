@@ -124,22 +124,23 @@ DevSecOps Engineer
 - GitHub: https://github.com/desbain
 - Website: https://desbain.com
 
+
 ## 📸 Screenshots
 
 ### 🖥️ Session Manager
-![Managed Instances](screenshots/session-manager-managed-instances.png)
-![Active Session](screenshots/session-manager-active-session.png)
+![Managed Instance](screenshots/managed%20instance.png)
+![Session History](screenshots/Session%20history.png)
 
 ### ⚡ Run Command
-![Command History](screenshots/run-command-history.png)
-![Command Output](screenshots/run-command-output.png)
+![Command History](screenshots/command%20history.png)
 
 ### 🔐 Parameter Store
-![Parameters List](screenshots/parameter-store-list.png)
-![Parameter Details](screenshots/parameter-store-details.png)
+![Parameters List](screenshots/parameters-list.png)
 
 ### 🩹 Patch Manager
+![Patch Baselines](screenshots/Patch-baselines.png)
+![Patch Baselines Detail](screenshots/Patch-baselines1.png)
+![Patches](screenshots/Patches.png)
 ![Patch Compliance](screenshots/patch-manager-compliance.png)
-![Maintenance Window](screenshots/patch-manager-maintenance-window.png)
-![Patch Baseline](screenshots/patch-manager-baseline.png)
-![Patch Results](screenshots/patch-manager-results.png)
+![Patch Compliance Detail](screenshots/patch-manager-compliance1.png)
+![Patch Compliance Results](screenshots/patch-manager-compliance2.png)
