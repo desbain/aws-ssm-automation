@@ -123,3 +123,23 @@ DoD/Government:
 DevSecOps Engineer
 - GitHub: https://github.com/desbain
 - Website: https://desbain.com
+
+## 📸 Screenshots
+
+### 🖥️ Session Manager
+![Managed Instances](screenshots/session-manager-managed-instances.png)
+![Active Session](screenshots/session-manager-active-session.png)
+
+### ⚡ Run Command
+![Command History](screenshots/run-command-history.png)
+![Command Output](screenshots/run-command-output.png)
+
+### 🔐 Parameter Store
+![Parameters List](screenshots/parameter-store-list.png)
+![Parameter Details](screenshots/parameter-store-details.png)
+
+### 🩹 Patch Manager
+![Patch Compliance](screenshots/patch-manager-compliance.png)
+![Maintenance Window](screenshots/patch-manager-maintenance-window.png)
+![Patch Baseline](screenshots/patch-manager-baseline.png)
+![Patch Results](screenshots/patch-manager-results.png)
