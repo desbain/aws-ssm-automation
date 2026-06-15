@@ -302,6 +302,79 @@ aws ssm list-associations --region us-east-2 --output table
 aws ssm list-compliance-summaries --region us-east-2 --output table
 ```
 
+
+## 📊 Project Results
+
+### ✅ Project 1 — Session Manager
+| Field | Result |
+|---|---|
+| Instance ID | i-0263a2b3237a5b6e6 |
+| Connection | Browser terminal - NO SSH |
+| Port 22 | CLOSED |
+| Key Pair | NONE needed |
+| User | ssm-user |
+| Hostname | ip-10-0-6-194.us-east-2.compute.internal |
+
+### ✅ Project 2 — Run Command
+| Field | Result |
+|---|---|
+| Date | Mon Jun 15 04:34:15 UTC 2026 |
+| Uptime | 1 hour 50 minutes |
+| Disk | 8GB total 25% used |
+| Memory | 961MB total 218MB used |
+| Docker | v25.0.14 installed |
+| Status | Success |
+
+### ✅ Project 3 — Parameter Store
+| Parameter | Type |
+|---|---|
+| /patient-system/db/password | SecureString |
+| /patient-system/db/username | String |
+| /patient-system/db/name | String |
+| /patient-system/auth/jwt-secret | SecureString |
+| /patient-system/pgadmin/email | String |
+| /patient-system/pgadmin/password | SecureString |
+| Total | 6 parameters stored securely |
+
+### ✅ Project 4 — Patch Manager
+| Field | Result |
+|---|---|
+| Baseline | patient-server-patch-baseline |
+| OS | Amazon Linux 2023 |
+| Schedule | Every Sunday 2AM UTC |
+| Installed | 53 patches |
+| Missing | 0 patches |
+| Failed | 0 patches |
+| Status | COMPLIANT |
+
+### ✅ Project 5 — Inventory
+| Field | Result |
+|---|---|
+| OS | Amazon Linux 2023 |
+| SSM Agent | v3.3.4515.0 |
+| IP | 10.0.6.194 |
+| Packages | 50 tracked |
+| Schedule | every 30 minutes |
+| Interfaces | enX0 + docker0 |
+
+### ✅ Project 6 — State Manager
+| Association | Schedule | Status |
+|---|---|---|
+| AWS-GatherSoftwareInventory | rate(30 minutes) | Success |
+| EnsureDockerRunning | rate(30 minutes) | Success |
+| SecurityHardening | rate(1 hour) | Success |
+| AWS-UpdateSSMAgent | rate(7 days) | Success |
+
+### ✅ Project 7 — Automation Runbooks
+| Runbook | Result |
+|---|---|
+| PatientSystem-HealthCheck | Success - full diagnostic |
+| PatientSystem-DockerCleanup | Success - disk clean |
+| PatientSystem-SecurityAudit | Success - 20 services found |
+| SELinux Status | Permissive (recommend Enforcing) |
+| Open Ports | 22 SSH + containerd |
+| User Accounts | root ec2-user ssm-user |
+
 ## 📸 Screenshots
 
 ### 🖥️ Session Manager
@@ -321,3 +394,20 @@ aws ssm list-compliance-summaries --region us-east-2 --output table
 ![Patch Compliance](screenshots/patch-manager-compliance.png)
 ![Patch Compliance Detail](screenshots/patch-manager-compliance1.png)
 ![Patch Compliance Results](screenshots/patch-manager-compliance2.png)
+
+### 📦 Inventory
+![Inventory Association](screenshots/inventory%20association.png)
+![Inventory Instance](screenshots/inventory-instance.png)
+![Inventory Data 1](screenshots/Inventory1.png)
+![Inventory Data 2](screenshots/Inventory2.png)
+
+### 🔄 State Manager
+![State Manager Associations](screenshots/State%20Manager%20Associations%20list.png)
+![Compliance Summary](screenshots/Compliance%20summary.png)
+
+### 🤖 Automation Runbooks
+![Custom Documents List](screenshots/Custom%20Documents%20list.png)
+![Health Check Document](screenshots/PatientSystem-HealthCheck%20document.png)
+![Docker Cleanup Document](screenshots/PatientSystem-DockerCleanup%20document.png)
+![Security Audit Document](screenshots/PatientSystem-SecurityAudit%20document.png)
+![Automation Command History](screenshots/Automation%20command%20history.png)
