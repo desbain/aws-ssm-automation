@@ -1,1 +1,0 @@
-{"commands":["echo === HEALTH CHECK REPORT ===","echo Date: $(date)","echo Hostname: $(hostname)","echo === DISK ===","df -h","echo === MEMORY ===","free -m","echo === DOCKER ===","docker ps","echo === UPTIME ===","uptime","echo === PORTS ===","ss -tlnp","echo === COMPLETE ==="]}
