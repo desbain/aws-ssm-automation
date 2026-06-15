@@ -125,6 +125,183 @@ DevSecOps Engineer
 - Website: https://desbain.com
 
 
+
+## 📊 Project Results
+
+### ✅ Project 1 — Session Manager
+| Field | Result |
+|---|---|
+| Instance ID | i-0263a2b3237a5b6e6 |
+| Connection | Browser terminal - NO SSH |
+| Port 22 | CLOSED |
+| Key Pair | NONE needed |
+| User | ssm-user |
+| Hostname | ip-10-0-6-194.us-east-2.compute.internal |
+
+### ✅ Project 2 — Run Command
+| Field | Result |
+|---|---|
+| Date | Mon Jun 15 04:34:15 UTC 2026 |
+| Uptime | 1 hour 50 minutes |
+| Disk | 8GB total 25% used |
+| Memory | 961MB total 218MB used |
+| Docker | v25.0.14 installed |
+| Status | Success |
+
+### ✅ Project 3 — Parameter Store
+| Parameter | Type |
+|---|---|
+| /patient-system/db/password | SecureString |
+| /patient-system/db/username | String |
+| /patient-system/db/name | String |
+| /patient-system/auth/jwt-secret | SecureString |
+| /patient-system/pgadmin/email | String |
+| /patient-system/pgadmin/password | SecureString |
+| Total | 6 parameters stored |
+
+### ✅ Project 4 — Patch Manager
+| Field | Result |
+|---|---|
+| Baseline | patient-server-patch-baseline |
+| OS | Amazon Linux 2023 |
+| Schedule | Every Sunday 2AM UTC |
+| Installed | 53 patches |
+| Missing | 0 patches |
+| Failed | 0 patches |
+| Status | COMPLIANT |
+
+### ✅ Project 5 — Inventory
+| Field | Result |
+|---|---|
+| OS | Amazon Linux 2023 |
+| SSM Agent | v3.3.4515.0 |
+| IP | 10.0.6.194 |
+| Packages | 50 tracked |
+| Schedule | every 30 minutes |
+| Network | enX0 + docker0 |
+
+### ✅ Project 6 — State Manager
+| Association | Schedule | Status |
+|---|---|---|
+| AWS-GatherSoftwareInventory | rate(30 minutes) | Success |
+| EnsureDockerRunning | rate(30 minutes) | Success |
+| SecurityHardening | rate(1 hour) | Success |
+| AWS-UpdateSSMAgent | rate(7 days) | Success |
+
+### Compliance Summary
+| Type | Compliant | Non-Compliant |
+|---|---|---|
+| Association | 1 | 0 |
+| Patch | 0 | 1 |
+
+## 🔐 Security Architecture
+
+| Traditional | SSM |
+|---|---|
+| Port 22 open | No ports open |
+| .pem keys | IAM authentication |
+| No audit trail | Full CloudTrail |
+| Manual patching | Auto patching |
+|
+| Status | Success |
+
+### ✅ Project 3 — Parameter Store
+| Parameter | Type |
+|---|---|
+| /patient-system/db/password | SecureString |
+| /patient-system/db/username | String |
+| /patient-system/db/name | String |
+| /patient-system/auth/jwt-secret | SecureString |
+| /patient-system/pgadmin/email | String |
+| /patient-system/pgadmin/password | SecureString |
+| Total | 6 parameters stored |
+
+### ✅ Project 4 — Patch Manager
+| Field | Result |
+|---|---|
+| Baseline | patient-server-patch-baseline |
+| OS | Amazon Linux 2023 |
+| Schedule | Every Sunday 2AM UTC |
+| Installed | 53 patches |
+| Missing | 0 patches |
+| Failed | 0 patches |
+| Status | COMPLIANT |
+
+### ✅ Project 5 — Inventory
+| Field | Result |
+|---|---|
+| OS | Amazon Linux 2023 |
+| SSM Agent | v3.3.4515.0 |
+| IP | 10.0.6.194 |
+| Packages | 50 tracked |
+| Schedule | every 30 minutes |
+| Network | enX0 + docker0 |
+
+### ✅ Project 6 — State Manager
+| Association | Schedule | Status |
+|---|---|---|
+| AWS-GatherSoftwareInventory | rate(30 minutes) | Success |
+| EnsureDockerRunning | rate(30 minutes) | Success |
+| SecurityHardening | rate(1 hour) | Success |
+| AWS-UpdateSSMAgent | rate(7 days) | Success |
+
+### Compliance Summary
+| Type | Compliant | Non-Compliant |
+|---|---|---|
+| Association | 1 | 0 |
+| Patch | 0 | 1 |
+
+## 🔐 Security Architecture
+
+| Traditional | SSM |
+|---|---|
+| Port 22 open | No ports open |
+| .pem keys | IAM authentication |
+| No audit trail | Full CloudTrail |
+| Manual patching | Auto patching |
+| Hardcoded passwords | Parameter Store |
+| Manual inventory | Auto inventory |
+| No config compliance | State Manager |
+
+## 📋 Quick Reference Commands
+
+### Session Manager
+```bash
+aws ssm start-session --target INSTANCE_ID --region us-east-2
+aws ssm describe-instance-information --region us-east-2 --output table
+```
+
+### Run Command
+```bash
+aws ssm send-command --instance-ids "ID" --document-name "AWS-RunShellScript" --parameters file://params.json --region us-east-2
+aws ssm get-command-invocation --command-id "ID" --instance-id "ID" --region us-east-2 --query "[Status,StandardOutputContent]" --output text
+```
+
+### Parameter Store
+```bash
+aws ssm put-parameter --name "/app/secret" --value "value" --type "SecureString" --region us-east-2
+aws ssm get-parameter --name "/app/secret" --with-decryption --region us-east-2 --query "Parameter.Value" --output text
+aws ssm get-parameters-by-path --path "/app" --recursive --with-decryption --region us-east-2 --output table
+```
+
+### Patch Manager
+```bash
+aws ssm describe-instance-patch-states --instance-ids "ID" --region us-east-2 --output table
+```
+
+### Inventory
+```bash
+aws ssm list-inventory-entries --instance-id "ID" --type-name "AWS:Application" --region us-east-2 --output table
+aws ssm list-inventory-entries --instance-id "ID" --type-name "AWS:Network" --region us-east-2 --output table
+aws ssm list-inventory-entries --instance-id "ID" --type-name "AWS:InstanceInformation" --region us-east-2 --output table
+```
+
+### State Manager
+```bash
+aws ssm list-associations --region us-east-2 --output table
+aws ssm list-compliance-summaries --region us-east-2 --output table
+```
+
 ## 📸 Screenshots
 
 ### 🖥️ Session Manager
@@ -144,181 +321,3 @@ DevSecOps Engineer
 ![Patch Compliance](screenshots/patch-manager-compliance.png)
 ![Patch Compliance Detail](screenshots/patch-manager-compliance1.png)
 ![Patch Compliance Results](screenshots/patch-manager-compliance2.png)
-
-## 📊 Project Results
-
-### ✅ Project 1 — Session Manager
-Connected to EC2 without SSH:
-
-Instance ID:  i-0263a2b3237a5b6e6
-
-Hostname:     ip-10-0-6-194.us-east-2.compute.internal
-
-User:         ssm-user
-
-Port 22:      CLOSED (not needed!)
-
-Key pair:     NONE (not needed!)
-### ✅ Project 2 — Run Command
-### ✅ Project 2 — Run Command
-Health Check Results:
-
-Date:     Mon Jun 15 04:34:15 UTC 2026
-
-Hostname: ip-10-0-6-194.us-east-2.compute.internal
-
-Uptime:   1 hour 50 minutes
-
-Disk:     8GB total, 25% used, 6.1GB free
-
-Memory:   961MB total, 218MB used
-
-Docker:   v25.0.14 installed
-
-Status:   Success
-
-### ✅ Project 3 — Parameter Store
-Secrets Stored:
-
-/patient-system/db/password      SecureString (encrypted)
-
-/patient-system/db/username      String
-
-/patient-system/db/name          String
-
-/patient-system/auth/jwt-secret  SecureString (encrypted)
-
-/patient-system/pgadmin/email    String
-
-/patient-system/pgadmin/password SecureString (encrypted)
-
-Total: 6 parameters stored securely
-
-### ✅ Project 4 — Patch Manager
-Patch Baseline:  patient-server-patch-baseline
-
-OS:              Amazon Linux 2023
-
-Schedule:        Every Sunday 2AM UTC
-
-Installed:       53 patches
-
-Missing:         0 patches
-
-Failed:          0 patches
-
-Status:          COMPLIANT
-
-### ✅ Project 5 — Inventory
-Instance Information:
-
-OS:          Amazon Linux 2023
-
-IP:          10.0.6.194
-
-SSM Agent:   v3.3.4515.0
-
-Status:      Active
-Network Interfaces:
-
-enX0    → 10.0.6.194  (main interface)
-
-docker0 → 172.17.0.1  (docker bridge)
-Applications:
-
-Total packages tracked: 50
-
-Collection schedule: every 30 minutes
-
-## 🔐 Security Architecture
-TRADITIONAL (INSECURE):          SSM (SECURE):
-
-─────────────────────────────────────────────────
-
-Port 22 open              →      No ports open
-
-.pem keys to manage       →      IAM authentication
-
-No audit trail            →      Full CloudTrail logs
-
-Manual patching           →      Automated patching
-
-Hardcoded passwords       →      Parameter Store
-
-Manual inventory          →      Auto inventory
-
-No config compliance      →      State Manager
-
-## 📋 Commands Quick Reference
-
-### Session Manager
-```bash
-# Connect to instance without SSH
-aws ssm start-session --target INSTANCE_ID --region us-east-2
-
-# List all SSM managed instances
-aws ssm describe-instance-information --region us-east-2 --output table
-```
-
-### Run Command
-```bash
-# Run health check
-aws ssm send-command \
-  --instance-ids "INSTANCE_ID" \
-  --document-name "AWS-RunShellScript" \
-  --parameters file://params.json \
-  --region us-east-2
-
-# Get results
-aws ssm get-command-invocation \
-  --command-id "COMMAND_ID" \
-  --instance-id "INSTANCE_ID" \
-  --region us-east-2 \
-  --query "[Status,StandardOutputContent]" \
-  --output text
-```
-
-### Parameter Store
-```bash
-# Store secret
-aws ssm put-parameter \
-  --name "/app/secret" \
-  --value "mypassword" \
-  --type "SecureString" \
-  --region us-east-2
-
-# Retrieve secret
-aws ssm get-parameter \
-  --name "/app/secret" \
-  --with-decryption \
-  --region us-east-2 \
-  --query "Parameter.Value" \
-  --output text
-```
-
-### Patch Manager
-```bash
-# Check patch compliance
-aws ssm describe-instance-patch-states \
-  --instance-ids "INSTANCE_ID" \
-  --region us-east-2 \
-  --output table
-```
-
-### Inventory
-```bash
-# Get installed packages
-aws ssm list-inventory-entries \
-  --instance-id "INSTANCE_ID" \
-  --type-name "AWS:Application" \
-  --region us-east-2 \
-  --output table
-
-# Count packages
-aws ssm list-inventory-entries \
-  --instance-id "INSTANCE_ID" \
-  --type-name "AWS:Application" \
-  --region us-east-2 \
-  --query "length(Entries)" \
-  --output text
-```
