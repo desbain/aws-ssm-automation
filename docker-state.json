@@ -1,0 +1,1 @@
+{"commands":["systemctl enable docker","systemctl start docker","echo Docker state enforced: $(date)"]}

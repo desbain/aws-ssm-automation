@@ -1,0 +1,1 @@
+{"commands":["echo Security hardening check: $(date)","chmod 700 /root","echo HISTSIZE=1000 >> /etc/profile","echo Security check complete"]}

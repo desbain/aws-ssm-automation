@@ -1,0 +1,26 @@
+﻿=== HEALTH CHECK REPORT ===
+Date: Mon Jun 15 13:04:55 UTC 2026
+Hostname: ip-10-0-6-194.us-east-2.compute.internal
+=== DISK ===
+Filesystem      Size  Used Avail Use% Mounted on
+devtmpfs        4.0M     0  4.0M   0% /dev
+tmpfs           481M     0  481M   0% /dev/shm
+tmpfs           193M  464K  192M   1% /run
+/dev/xvda1      8.0G  2.0G  6.0G  25% /
+tmpfs           481M     0  481M   0% /tmp
+/dev/xvda128     10M  1.3M  8.7M  13% /boot/efi
+=== MEMORY ===
+               total        used        free      shared  buff/cache   available
+Mem:             961         189         278           0         493         629
+Swap:              0           0           0
+=== DOCKER ===
+CONTAINER ID   IMAGE     COMMAND   CREATED   STATUS    PORTS     NAMES
+=== UPTIME ===
+ 13:04:55 up 10:21,  0 users,  load average: 0.00, 0.00, 0.00
+=== PORTS ===
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                               
+LISTEN 0      4096       127.0.0.1:37827      0.0.0.0:*    users:(("containerd",pid=5102,fd=15))
+LISTEN 0      128          0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=2139,fd=3))       
+LISTEN 0      128             [::]:22            [::]:*    users:(("sshd",pid=2139,fd=4))       
+=== COMPLETE ===
+

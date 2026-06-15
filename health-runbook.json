@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "2.2",
+  "description": "EC2 Health Check and Diagnostic Runbook",
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "CollectSystemInfo",
+      "inputs": {
+        "runCommand": [
+          "echo === HEALTH CHECK REPORT ===",
+          "echo Generated: $(date)",
+          "echo Hostname: $(hostname)",
+          "echo === SYSTEM INFO ===",
+          "uname -a",
+          "echo === UPTIME ===",
+          "uptime",
+          "echo === DISK USAGE ===",
+          "df -h",
+          "echo === MEMORY ===",
+          "free -m",
+          "echo === DOCKER STATUS ===",
+          "systemctl status docker --no-pager",
+          "docker ps 2>/dev/null || echo Docker not running",
+          "echo === SSM AGENT ===",
+          "systemctl status amazon-ssm-agent --no-pager",
+          "echo === OPEN PORTS ===",
+          "ss -tlnp",
+          "echo === HEALTH CHECK COMPLETE ==="
+        ]
+      }
+    }
+  ]
+}

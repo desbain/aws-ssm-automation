@@ -1,0 +1,17 @@
+﻿=== DOCKER CLEANUP RUNBOOK ===
+Started: Mon Jun 15 13:06:14 UTC 2026
+=== DISK BEFORE CLEANUP ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1      8.0G  2.0G  6.0G  25% /
+=== REMOVING STOPPED CONTAINERS ===
+Total reclaimed space: 0B
+=== REMOVING UNUSED IMAGES ===
+Total reclaimed space: 0B
+=== REMOVING UNUSED VOLUMES ===
+Total reclaimed space: 0B
+=== REMOVING UNUSED NETWORKS ===
+=== DISK AFTER CLEANUP ===
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/xvda1      8.0G  2.0G  6.0G  25% /
+=== CLEANUP COMPLETE: Mon Jun 15 13:06:14 UTC 2026 ===
+

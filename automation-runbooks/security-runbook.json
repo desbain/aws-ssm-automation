@@ -1,0 +1,31 @@
+{
+  "schemaVersion": "2.2",
+  "description": "Security Audit Automation Runbook",
+  "mainSteps": [
+    {
+      "action": "aws:runShellScript",
+      "name": "SecurityAudit",
+      "inputs": {
+        "runCommand": [
+          "echo === SECURITY AUDIT REPORT ===",
+          "echo Generated: $(date)",
+          "echo === OPEN PORTS ===",
+          "ss -tlnp",
+          "echo === RUNNING SERVICES ===",
+          "systemctl list-units --type=service --state=running --no-pager",
+          "echo === USER ACCOUNTS ===",
+          "cat /etc/passwd | grep -v nologin | grep -v false",
+          "echo === SUDO USERS ===",
+          "grep -v ^# /etc/sudoers 2>/dev/null | grep -v ^$",
+          "echo === FILE PERMISSIONS ===",
+          "ls -la /root/",
+          "echo === INSTALLED SECURITY TOOLS ===",
+          "rpm -qa | grep -E audit|aide|selinux || echo No security tools found",
+          "echo === SELINUX STATUS ===",
+          "getenforce 2>/dev/null || echo SELinux not available",
+          "echo === AUDIT COMPLETE ==="
+        ]
+      }
+    }
+  ]
+}
